@@ -1,0 +1,22 @@
+<% if (messages) {%>
+    <% messages.forEach(function(message){ %>
+        <article class="rounded-4 p-3" style="background-color: #1E1E1E;">
+            <h2 class="mb-3">
+                <%=message.title%>
+            </h2>
+            <div class="d-flex flex-row gap-3 mb-2">
+                <div class="d-flex align-items-center justify-content-center rounded-3 p-2 "
+                    style="background-color: #303030; min-width: 100px; height: 30px; color: #c6fbbb;">
+                    <%=message.fullName%>
+                </div>
+                <div class="d-flex align-items-center justify-content-center rounded-3 p-2 "
+                    style="background-color: #303030; min-width: 150px; height: 30px; color: #c6fbbb;">
+                    <%=message.timestamp%>
+                </div>
+            </div>
+            <p class="mt-3">I developed this vaccine not for profit or fame, but because I could not bear to see
+                <%=message.text%>
+            </p>
+        </article>
+        <% }) %>
+            <%} %>
