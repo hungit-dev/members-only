@@ -19,6 +19,7 @@ const showMessageBoardForAuthorizedUserGet = async (req, res) => {
   const messages = [];
   for (let message of rows) {
     messages.push({
+      id: message.id,
       text: message.text,
       title: message.title,
       timestamp: message.timestamp,
@@ -27,7 +28,13 @@ const showMessageBoardForAuthorizedUserGet = async (req, res) => {
   }
   res.render("message-board.ejs", { messages: messages, isAdmin: true });
 };
+const deleteMessageGet = async (req, res) => {
+  const id = req.params.id;
+  await db.deleteMessage(id);
+  res.redirect("/");
+};
 module.exports = {
   showMessageBoardForUnauthorizedUserGet,
   showMessageBoardForAuthorizedUserGet,
+  deleteMessageGet,
 };

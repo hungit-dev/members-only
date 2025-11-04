@@ -9,4 +9,5 @@ indexRouter.get("/log-in", (req, res) => {
 indexRouter.get("/sign-up", (req, res) => {
   res.render("sign-up");
 });
+indexRouter.get("/:id/delete", messagesController.deleteMessageGet);
 module.exports = indexRouter;
