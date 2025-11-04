@@ -1,0 +1,15 @@
+/*Effects for buttons */
+.btn {
+    background-color: #c6fbbb;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #b1f7a6 !important;
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    background-color: #9be98f !important;
+    transform: translateY(0);
+}
