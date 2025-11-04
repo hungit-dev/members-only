@@ -1,15 +1,16 @@
+require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
 const passport = require("./passport-config");
 const path = require("node:path");
 const assetsPath = path.join(__dirname, "public");
 const indexRouter = require("./routes/indexRouter");
-require('dotenv').config();
 
 const app = express();
 /*use imported passport*/
-app.use(passport.initialize())
-app.use(passport.session())
+app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 /*look and render ejs files*/
 app.set("views", path.join(__dirname, "views"));
