@@ -1,15 +1,33 @@
 /*Effects for buttons */
-.btn {
-    background-color: #c6fbbb;
-    transition: all 0.2s ease-in-out;
+.btn.green-btn {
+  background-color: #c6fbbb;
+  transition: all 0.2s ease-in-out;
 }
 
-.btn:hover {
-    background-color: #b1f7a6 !important;
-    transform: translateY(-2px);
+.btn.green-btn:hover {
+  background-color: #b1f7a6 !important;
+  transform: translateY(-2px);
 }
 
-.btn:active {
-    background-color: #9be98f !important;
-    transform: translateY(0);
+.btn.green-btn:active {
+  background-color: #9be98f !important;
+  transform: translateY(0);
+}
+
+.delete-btn {
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #dc3545 !important;
+  color: white !important;
+  border-color: #dc3545 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+.delete-btn:active {
+  background-color: #bb2d3b !important;
+  transform: translateY(0px) scale(0.95);
+  box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
 }

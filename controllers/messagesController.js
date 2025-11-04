@@ -12,7 +12,7 @@ const showMessageBoardForUnauthorizedUserGet = async (req, res) => {
       fullName: "Anonymous",
     });
   }
-  res.render("message-board.ejs", { messages: messages });
+  res.render("message-board.ejs", { messages: messages, isAdmin: false });
 };
 const showMessageBoardForAuthorizedUserGet = async (req, res) => {
   const rows = await db.getAllMessages();
@@ -25,7 +25,7 @@ const showMessageBoardForAuthorizedUserGet = async (req, res) => {
       fullName: message.first_name + message.last_name,
     });
   }
-  res.render("message-board.ejs", { messages: messages });
+  res.render("message-board.ejs", { messages: messages, isAdmin: true });
 };
 module.exports = {
   showMessageBoardForUnauthorizedUserGet,

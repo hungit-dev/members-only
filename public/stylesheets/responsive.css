@@ -1,5 +1,4 @@
 @media (max-width: 900px) {
-
   header,
   main,
   footer {
@@ -8,13 +7,13 @@
 }
 
 @media (max-width: 500px) {
-  main>div:nth-child(2) {
+  main > div:nth-child(2) {
     flex-direction: column;
     align-items: flex-start !important;
     gap: 1rem;
   }
 
-  main>div:nth-child(2)>div {
+  main > div:nth-child(2) > div {
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -22,5 +21,8 @@
 
   input {
     width: 80% !important;
+  }
+  article > div:nth-child(2) {
+    flex-direction: column !important;
   }
 }
