@@ -24,35 +24,40 @@
     </header>
     <main class=" text-white mt-3 pb-4" style="width:60%;">
         <h1>Sign Up</h1>
-        <form action="" class="text-light">
-            <div class="mb-3">
-                <label for="first-name" class="mb-1 text-secondary">First Name</label>
-                <input type="text" id="first-name" class="form-control text-light"
-                    style="width: 60%; max-width: 350px; background-color: #1E1E1E; outline: none; border: 0;">
-            </div>
-            <div class="mb-3">
-                <label for="last-name" class="mb-1 text-secondary">Last Name</label>
-                <input type="text" id="last-name" class="form-control text-light"
-                    style="width: 60%; max-width: 350px; background-color: #1E1E1E; outline: none; border: 0;">
-            </div>
-            <div class="mb-3">
-                <label for="user-name" class="mb-1 text-secondary"> Username</label>
-                <input type="text" id="user-name" class="form-control text-light"
-                    style="width: 60%;max-width: 350px; background-color: #1E1E1E; outline: none; border: 0;">
-            </div>
-            <div class="mb-3">
-                <label for="password" class="mb-1 text-secondary">Password</label>
-                <input type="text" id="password" class="form-control text-light"
-                    style="width: 60%;max-width: 350px; background-color: #1E1E1E; outline: none; border: 0;">
-            </div>
-            <div class="mb-3">
-                <label for="confirm-password" class="mb-1 text-secondary">Confirm Password</label>
-                <input type="text" id="confirm-password" class="form-control text-light"
-                    style="width: 60%;max-width: 350px; background-color: #1E1E1E; outline: none; border: 0;">
-            </div>
-            <p class="text-secondary">Already have an account? <a href="/log-in" style="color:#c6fbbb ;">Log in</a></p>
-            <button class="btn green-btn rounded-3">Log in </button>
-        </form>
+        <%- include("../partials/errors",{errors: errors}) %>
+            <form action="/" method="post" class="text-light">
+                <div class="mb-3">
+                    <label for="first-name" class="mb-1 text-secondary">First Name</label>
+                    <input type="text" id="first-name" class="form-control text-light" name="first-name"
+                        style="width: 60%; max-width: 350px; background-color: #1E1E1E; outline: none; border: 0;">
+                </div>
+                <div class="mb-3">
+                    <label for="last-name" class="mb-1 text-secondary">Last Name</label>
+                    <input type="text" id="last-name" class="form-control text-light" name="last-name"
+                        style="width: 60%; max-width: 350px; background-color: #1E1E1E; outline: none; border: 0;">
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="mb-1 text-secondary"> Username</label>
+                    <input type="text" id="username" class="form-control text-light" name="username"
+                        style="width: 60%;max-width: 350px; background-color: #1E1E1E; outline: none; border: 0;">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="mb-1 text-secondary">Password</label>
+                    <input type="password" id="password" class="form-control text-light" name="password"
+                        style="width: 60%;max-width: 350px; background-color: #1E1E1E; outline: none; border: 0;">
+                </div>
+                <div class="mb-3">
+                    <label for="confirm-password" class="mb-1 text-secondary">Confirm Password</label>
+                    <input type="password" id="confirm-password" class="form-control text-light" name="confirm-password"
+                        style="width: 60%;max-width: 350px; background-color: #1E1E1E; outline: none; border: 0;">
+                </div>
+                <p class="text-secondary"><small>Note: Leading and trailing spaces in all fields will be
+                        ignored</small></p>
+                <p class="text-secondary">Already have an account? <a href="/" style="color:#c6fbbb ;">Log in</a>
+                </p>
+                <button class="btn green-btn rounded-3">Log in </button>
+
+            </form>
     </main>
     <footer class="text-secondary d-flex justify-content-center mt-auto mb-1" style="width: 60%;">
         Made by @lamnhathunghuynh

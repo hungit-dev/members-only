@@ -1,5 +1,4 @@
 const db = require("../db/queries");
-const { body, validationResult } = require("express-validator");
 
 const showMessageBoardForUnauthorizedUserGet = async (req, res) => {
   const rows = await db.getAllMessages();
