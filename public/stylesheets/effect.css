@@ -32,7 +32,12 @@
   box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
 }
 
-/*Effect for nav links */
+/*Effects for nav links */
 header nav a:hover {
   color: #f8f9fa !important;
+}
+
+/*Effects for form links */
+form a:hover {
+  text-decoration: underline !important;
 }
