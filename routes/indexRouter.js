@@ -10,11 +10,15 @@ indexRouter.get(
 indexRouter.get("/add-message", (req, res) => {
   res.render("add-message-form");
 });
+// if user is not login, redirect them to login page. If user is logged in, redirect them to message board
 indexRouter.get("/", (req, res) => {
   if (req.user) {
     res.redirect("/message-board");
     return;
   }
+  res.redirect("/log-in");
+});
+indexRouter.get("/log-in", (req, res) => {
   res.render("log-in", { error: req.flash("error") });
 });
 indexRouter.get("/sign-up", (req, res) => {
@@ -27,10 +31,10 @@ indexRouter.post(
 );
 indexRouter.get("/:id/delete", messagesController.deleteMessageGet);
 indexRouter.post(
-  "/",
+  "/log-in",
   passport.authenticate("local", {
     successRedirect: "/message-board",
-    failureRedirect: "/",
+    failureRedirect: "/log-in",
     failureFlash: true,
   })
 );
