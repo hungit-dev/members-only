@@ -42,4 +42,5 @@ indexRouter.get("/log-out", (req, res, next) => {
     res.redirect("/");
   });
 });
+indexRouter.post("/add-message", messagesController.addMessagePost);
 module.exports = indexRouter;

@@ -2,7 +2,7 @@ const pool = require("./pool");
 
 const getAllMessages = async () => {
   const { rows } = await pool.query(
-    "SELECT messages.id,title,text,timestamp,first_name,last_name FROM messages INNER JOIN users ON messages.user_id=users.id"
+    "SELECT messages.id,title,text,timestamp,first_name,last_name,users.id AS user_id FROM messages INNER JOIN users ON messages.user_id=users.id"
   );
   return rows;
 };
@@ -27,10 +27,17 @@ const searchUserById = async (userId) => {
   ]);
   return rows;
 };
+const addMessage = async (title, text, userId) => {
+  await pool.query(
+    "INSERT INTO messages (title,text,user_id) VALUES ($1,$2,$3)",
+    [title, text, userId]
+  );
+};
 module.exports = {
   getAllMessages,
   deleteMessage,
   addUser,
   searchUserByUsername,
   searchUserById,
+  addMessage,
 };
