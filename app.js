@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
 const passport = require("./passport-config");
+const flash = require("express-flash");
 const path = require("node:path");
 const assetsPath = path.join(__dirname, "public");
 const indexRouter = require("./routes/indexRouter");
@@ -9,6 +10,8 @@ const indexRouter = require("./routes/indexRouter");
 const app = express();
 /*use imported passport*/
 app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
+/*Flash setup*/
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 

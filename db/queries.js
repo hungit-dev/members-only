@@ -21,9 +21,16 @@ const searchUserByUsername = async (username) => {
   ]);
   return rows;
 };
+const searchUserById = async (userId) => {
+  const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [
+    userId,
+  ]);
+  return rows;
+};
 module.exports = {
   getAllMessages,
   deleteMessage,
   addUser,
   searchUserByUsername,
+  searchUserById,
 };

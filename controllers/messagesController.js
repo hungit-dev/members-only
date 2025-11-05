@@ -7,11 +7,15 @@ const showMessageBoardForUnauthorizedUserGet = async (req, res) => {
     messages.push({
       text: message.text,
       title: message.title,
-      timestamp: "???",
+      timestamp: "Date unavailable",
       fullName: "Anonymous",
     });
   }
-  res.render("message-board.ejs", { messages: messages, isAdmin: false });
+  res.render("message-board.ejs", {
+    messages: messages,
+    isAdmin: false,
+    user: req.user,
+  });
 };
 const showMessageBoardForAuthorizedUserGet = async (req, res) => {
   const rows = await db.getAllMessages();
@@ -23,6 +27,7 @@ const showMessageBoardForAuthorizedUserGet = async (req, res) => {
       title: message.title,
       timestamp: message.timestamp,
       fullName: message.first_name + message.last_name,
+      user: req.user,
     });
   }
   res.render("message-board.ejs", { messages: messages, isAdmin: true });
