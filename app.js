@@ -10,10 +10,10 @@ const indexRouter = require("./routes/indexRouter");
 const app = express();
 /*use imported passport*/
 app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
-/*Flash setup*/
-app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+/*Flash setup*/
+app.use(flash());
 
 /*look and render ejs files*/
 app.set("views", path.join(__dirname, "views"));

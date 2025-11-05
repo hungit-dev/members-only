@@ -1,4 +1,5 @@
 const passport = require("passport");
+const bcrypt = require("bcryptjs");
 const LocalStrategy = require("passport-local").Strategy;
 const db = require("./db/queries");
 passport.use(
@@ -9,7 +10,9 @@ passport.use(
       if (!user) {
         return done(null, false, { message: "No username found" });
       }
-      if (user.password !== password) {
+      const match = await bcrypt.compare(password, user.password);
+      if (!match) {
+        // passwords do not match!
         return done(null, false, { message: "Incorrect password" });
       }
       return done(null, user);

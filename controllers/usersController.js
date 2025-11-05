@@ -1,6 +1,6 @@
 const db = require("../db/queries");
 const { body, validationResult } = require("express-validator");
-
+const bcrypt = require("bcryptjs");
 const validateSignUpForm = [
   body("first-name")
     .trim()
@@ -42,11 +42,12 @@ const addUserPost = async (req, res) => {
       res.render("sign-up", { errors: [{ msg: "username already exists" }] });
       return;
     }
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
     await db.addUser(
       req.body["first-name"],
       req.body["last-name"],
       req.body.username,
-      req.body.password
+      hashedPassword
     );
     res.redirect("/");
   } catch (err) {
