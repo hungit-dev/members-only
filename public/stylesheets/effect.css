@@ -41,3 +41,8 @@ header nav a:hover {
 form a:hover {
   text-decoration: underline !important;
 }
+
+/*Effect for placeholder in textarea*/
+textarea::placeholder {
+  color: #bbb !important;
+}

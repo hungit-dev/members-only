@@ -19,7 +19,8 @@
     justify-content: flex-end;
   }
 
-  input {
+  input,
+  textarea {
     width: 80% !important;
   }
   article > div:nth-child(2) {

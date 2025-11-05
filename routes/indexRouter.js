@@ -7,6 +7,9 @@ indexRouter.get(
   "/message-board",
   messagesController.showMessageBoardForUnauthorizedUserGet
 );
+indexRouter.get("/add-message", (req, res) => {
+  res.render("add-message-form");
+});
 indexRouter.get("/", (req, res) => {
   if (req.user) {
     res.redirect("/message-board");
