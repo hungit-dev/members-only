@@ -47,4 +47,7 @@ indexRouter.get("/log-out", (req, res, next) => {
   });
 });
 indexRouter.post("/add-message", messagesController.addMessagePost);
+indexRouter.get("/get-membership", (req, res) => {
+  res.render("get-membership");
+});
 module.exports = indexRouter;

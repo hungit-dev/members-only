@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Message Board</title>
+    <title>Get a membership</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--reset css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
@@ -26,19 +26,15 @@
         </nav>
     </header>
     <main class=" text-white mt-3 pb-4" style="width:60%;">
-        <h1 class="fs-1">Welcome back, <%=user.first_name%>
-                <%=user.last_name%>!</h1>
-        <div class=" d-flex justify-content-between align-items-center mb-2">
-            <p class=" text-secondary mb-0">Take a look at the most recent messages below.</p>
-            <div><a href="/add-message" style="text-decoration: none;"><button
-                        class="rounded-circle fs-3 d-flex align-items-center justify-content-center btn green-btn"
-                        style="width: 37px; height: 37px; color: black;border: 0;">+</button></a>
+        <h1>Get a membership</h1>
+        <form action="/add-message" method="post">
+            <div class="mb-3">
+                <label for="secret-code" class="mb-1 text-secondary"> Secret code</label>
+                <input type="text" id="title" class="form-control text-light" name="secret-code"
+                    style="width: 60%;max-width: 350px; background-color: #1E1E1E; outline: none; border: 0;">
             </div>
-        </div>
-        <div class=" d-flex flex-column gap-4 ms-2">
-            <!--messages-->
-            <%- include('../partials/messages',{messages:messages}) %>
-        </div>
+            <button class="btn green-btn rounded-3">Submit</button>
+        </form>
     </main>
     <footer class="text-secondary d-flex justify-content-center mt-auto mb-1" style="width: 60%;">
         Made by @lamnhathunghuynh
