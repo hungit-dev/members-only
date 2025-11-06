@@ -9,8 +9,8 @@ const showMessageBoardGet = async (req, res) => {
     }
     const rows = await db.getAllMessages();
     const messages = [];
-    if (req.user["membership_status"] == "n") {
-      // show normal message board if user is not admin
+    if (req.user["membership_status"] == "n" && req.user["is_admin"] == "n") {
+      // show normal message board if user is not a member
       for (let message of rows) {
         if (message["user_id"] == req.user.id) {
           //show date and author's name if it is user's messages
@@ -36,7 +36,28 @@ const showMessageBoardGet = async (req, res) => {
         isAdmin: false,
         user: req.user,
       });
-    } else {
+    } else if (
+      req.user["membership_status"] == "y" &&
+      req.user["is_admin"] == "n"
+    ) {
+      //show author's name and date if user is a member
+      for (let message of rows) {
+        messages.push({
+          id: message.id,
+          text: message.text,
+          title: message.title,
+          timestamp: message.timestamp,
+          fullName: message.first_name + " " + message.last_name,
+          user: req.user,
+        });
+      }
+      res.render("message-board", {
+        user: req.user,
+        messages: messages,
+        isAdmin: false,
+      });
+    } else if (req.user["is_admin"] == "y") {
+      //show author's name,date and delete button if user is an admin
       for (let message of rows) {
         messages.push({
           id: message.id,
