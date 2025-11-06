@@ -3,10 +3,7 @@ const indexRouter = Router();
 const passport = require("../passport-config.js");
 const messagesController = require("../controllers/messagesController");
 const usersController = require("../controllers/usersController");
-indexRouter.get(
-  "/message-board",
-  messagesController.showMessageBoardForUnauthorizedUserGet
-);
+indexRouter.get("/message-board", messagesController.showMessageBoardGet);
 indexRouter.get("/add-message", (req, res) => {
   res.render("add-message-form");
 });
