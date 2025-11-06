@@ -2,6 +2,10 @@ const db = require("../db/queries");
 
 const showMessageBoardGet = async (req, res) => {
   try {
+    if (!req.user) {
+      res.redirect("/");
+      return;
+    }
     const rows = await db.getAllMessages();
     console.log(rows);
     const messages = [];

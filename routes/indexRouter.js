@@ -5,6 +5,10 @@ const messagesController = require("../controllers/messagesController");
 const usersController = require("../controllers/usersController");
 indexRouter.get("/message-board", messagesController.showMessageBoardGet);
 indexRouter.get("/add-message", (req, res) => {
+  if (!req.user) {
+    res.redirect("/");
+    return;
+  }
   res.render("add-message-form");
 });
 // if user is not login, redirect them to login page. If user is logged in, redirect them to message board
@@ -45,7 +49,10 @@ indexRouter.get("/log-out", (req, res, next) => {
 });
 indexRouter.post("/add-message", messagesController.addMessagePost);
 indexRouter.get("/get-membership", (req, res) => {
-  console.log(req.user);
+  if (!req.user) {
+    res.redirect("/");
+    return;
+  }
   res.render("get-membership", { error: [], user: req.user });
 });
 indexRouter.post(
