@@ -21,20 +21,30 @@
     <header class="mt-4 d-flex flex-row justify-content-between" style="width: 60%;">
         <a href="/"><img src="./img/logo_optimized.webp" class="rounded-circle" alt="logo" width="40" height="40"></a>
         <nav class="d-flex gap-4 ">
-            <a class="text-secondary text-decoration-none" href="/get-membership">Membership</a>
-            <a class="text-secondary text-decoration-none" href="/log-out">Log out</a>
+            <a class="text-decoration-none" href="/get-membership">Membership</a>
+            <a class="text-decoration-none" href="/log-out">Log out</a>
         </nav>
     </header>
     <main class=" text-white mt-3 pb-4" style="width:60%;">
-        <h1>Get a membership</h1>
-        <form action="/add-message" method="post">
-            <div class="mb-3">
-                <label for="secret-code" class="mb-1 text-secondary"> Secret code</label>
-                <input type="text" id="title" class="form-control text-light" name="secret-code"
-                    style="width: 60%;max-width: 350px; background-color: #1E1E1E; outline: none; border: 0;">
-            </div>
-            <button class="btn green-btn rounded-3">Submit</button>
-        </form>
+        <%if (user["membership_status"] !=="y" ){ %>
+            <h1>Get a membership</h1>
+            <% if (error && error.length> 0) { %>
+                <div style="color: #ff7f7f; margin-bottom: 10px;">
+                    <%= error[0] %>
+                </div>
+                <% } %>
+                    <form action="/get-membership" method="post">
+                        <div class="mb-3">
+                            <label for="secret-code" class="mb-1 text-secondary"> Secret code</label>
+                            <input type="text" id="title" class="form-control text-light" name="secret-code"
+                                style="width: 60%;max-width: 350px; background-color: #1E1E1E; outline: none; border: 0;">
+                        </div>
+                        <button class="btn green-btn rounded-3">Submit</button>
+                    </form>
+                    <%}else{%>
+                        <h1>You already have a membership!</h1>
+                        <a id="go-back-link" href="/" style="text-decoration: none;color: #c6fbbb;">Go back</a>
+                        <% } %>
     </main>
     <footer class="text-secondary d-flex justify-content-center mt-auto mb-1" style="width: 60%;">
         Made by @lamnhathunghuynh

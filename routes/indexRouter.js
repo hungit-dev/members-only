@@ -48,6 +48,12 @@ indexRouter.get("/log-out", (req, res, next) => {
 });
 indexRouter.post("/add-message", messagesController.addMessagePost);
 indexRouter.get("/get-membership", (req, res) => {
-  res.render("get-membership");
+  console.log(req.user);
+  res.render("get-membership", { error: [], user: req.user });
 });
+indexRouter.post(
+  "/get-membership",
+  usersController.validateGetMemberShipForm,
+  usersController.changeMemberShipStatusToAdminPost
+);
 module.exports = indexRouter;

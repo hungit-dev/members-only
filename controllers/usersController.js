@@ -31,6 +31,12 @@ const validateSignUpForm = [
       return true;
     }),
 ];
+const validateGetMemberShipForm = [
+  body("secret-code")
+    .trim()
+    .notEmpty()
+    .withMessage("Secret code cannot be empty"),
+];
 const addUserPost = async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -55,7 +61,34 @@ const addUserPost = async (req, res) => {
     res.status(500).send("Server error");
   }
 };
+const changeMemberShipStatusToAdminPost = async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("get-membership", {
+        error: ["Secret code cannot be empty"],
+        user: req.user,
+      });
+    }
+    if (req.body["secret-code"] == process.env.SECRET_CODE) {
+      await db.changeMembershipStatusToAdmin(req.user.id);
+      res.redirect("/");
+      return;
+    } else {
+      res.render("get-membership", {
+        error: ["Incorrect secret code"],
+        user: req.user,
+      });
+      return;
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Server error");
+  }
+};
 module.exports = {
   validateSignUpForm,
   addUserPost,
+  validateGetMemberShipForm,
+  changeMemberShipStatusToAdminPost,
 };

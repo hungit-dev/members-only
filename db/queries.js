@@ -33,6 +33,11 @@ const addMessage = async (title, text, userId) => {
     [title, text, userId]
   );
 };
+const changeMembershipStatusToAdmin = async (userId) => {
+  await pool.query("UPDATE users SET membership_status = 'y' WHERE id=$1", [
+    userId,
+  ]);
+};
 module.exports = {
   getAllMessages,
   deleteMessage,
@@ -40,4 +45,5 @@ module.exports = {
   searchUserByUsername,
   searchUserById,
   addMessage,
+  changeMembershipStatusToAdmin,
 };

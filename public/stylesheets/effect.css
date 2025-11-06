@@ -32,16 +32,46 @@
   box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
 }
 
-/*Effects for nav links */
-header nav a:hover {
-  color: #f8f9fa !important;
-}
-
-/*Effects for form links */
-form a:hover {
+/*Effects for links */
+form a:hover,
+#go-back-link:hover {
   text-decoration: underline !important;
 }
+nav a {
+  background-image: linear-gradient(
+    to right,
+    #54b3d6,
+    #54b3d6 50%,
+    #6c757d 50%
+  ) !important;
+  background-size: 200% 100% !important;
+  background-position: -100% !important;
+  display: inline-block !important;
+  padding: 5px 0 !important;
+  position: relative !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  transition: all 0.3s ease-in-out !important;
+}
+nav a:before {
+  content: "" !important;
+  background: #54b3d6 !important;
+  display: block !important;
+  position: absolute !important;
+  bottom: -3px !important;
+  left: 0 !important;
+  width: 0 !important;
+  height: 3px !important;
+  transition: all 0.3s ease-in-out !important;
+}
 
+nav a:hover {
+  background-position: 0 !important;
+}
+
+nav a:hover::before {
+  width: 100% !important;
+}
 /*Effect for placeholder in textarea*/
 textarea::placeholder {
   color: #bbb !important;
