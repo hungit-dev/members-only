@@ -1,4 +1,5 @@
 const db = require("../db/queries");
+const { body, validationResult } = require("express-validator");
 
 const showMessageBoardGet = async (req, res) => {
   try {
@@ -7,7 +8,6 @@ const showMessageBoardGet = async (req, res) => {
       return;
     }
     const rows = await db.getAllMessages();
-    console.log(rows);
     const messages = [];
     if (req.user["membership_status"] == "n") {
       // show normal message board if user is not admin
@@ -71,6 +71,12 @@ const deleteMessageGet = async (req, res) => {
 };
 const addMessagePost = async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res
+        .status(400)
+        .render("add-message-form", { errors: errors.array() });
+    }
     await db.addMessage(req.body.title, req.body.message, req.user.id);
     res.redirect("/message-board");
   } catch (err) {
@@ -78,8 +84,13 @@ const addMessagePost = async (req, res) => {
     res.status(500).send("Server error");
   }
 };
+const validateAddMessageForm = [
+  body("title").trim().notEmpty().withMessage("Title cannot be empty"),
+  body("message").trim().notEmpty().withMessage("Message cannot be empty"),
+];
 module.exports = {
   showMessageBoardGet,
   deleteMessageGet,
   addMessagePost,
+  validateAddMessageForm,
 };

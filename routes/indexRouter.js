@@ -9,7 +9,7 @@ indexRouter.get("/add-message", (req, res) => {
     res.redirect("/");
     return;
   }
-  res.render("add-message-form");
+  res.render("add-message-form", { errors: [] });
 });
 // if user is not login, redirect them to login page. If user is logged in, redirect them to message board
 indexRouter.get("/", (req, res) => {
@@ -47,7 +47,11 @@ indexRouter.get("/log-out", (req, res, next) => {
     res.redirect("/");
   });
 });
-indexRouter.post("/add-message", messagesController.addMessagePost);
+indexRouter.post(
+  "/add-message",
+  messagesController.validateAddMessageForm,
+  messagesController.addMessagePost
+);
 indexRouter.get("/get-membership", (req, res) => {
   if (!req.user) {
     res.redirect("/");
