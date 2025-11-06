@@ -15,6 +15,12 @@ const addUser = async (firstName, lastName, username, password) => {
     [firstName, lastName, username, password]
   );
 };
+const addAdmin = async (firstName, lastName, username, password, isAdmin) => {
+  await pool.query(
+    "INSERT INTO users(first_name,last_name,username,password,is_admin) VALUES($1,$2,$3,$4,$5)",
+    [firstName, lastName, username, password, isAdmin]
+  );
+};
 const searchUserByUsername = async (username) => {
   const { rows } = await pool.query("SELECT * FROM users WHERE username=$1", [
     username,
@@ -42,6 +48,7 @@ module.exports = {
   getAllMessages,
   deleteMessage,
   addUser,
+  addAdmin,
   searchUserByUsername,
   searchUserById,
   addMessage,

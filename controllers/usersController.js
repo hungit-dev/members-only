@@ -49,6 +49,24 @@ const addUserPost = async (req, res) => {
       return;
     }
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    //Check admin access code if they enter it
+    if (req.body["admin-access-code"].length > 0) {
+      if (req.body["admin-access-code"] != process.env.ADMIN_CODE) {
+        res.render("sign-up", { errors: [{ msg: "Incorrect Admin Code" }] });
+        return;
+      } else {
+        //assigns user an admin if they enter correct access code
+        await db.addAdmin(
+          req.body["first-name"],
+          req.body["last-name"],
+          req.body.username,
+          hashedPassword,
+          "y"
+        );
+        res.redirect("/");
+        return;
+      }
+    }
     await db.addUser(
       req.body["first-name"],
       req.body["last-name"],
