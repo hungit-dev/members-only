@@ -104,9 +104,17 @@ const changeMemberShipStatusToAdminPost = async (req, res) => {
     res.status(500).send("Server error");
   }
 };
+const authenticateUserToDeleteMessage = (req, res, next) => {
+  if (req.user && req.user["is_admin"] === "y") {
+    next();
+    return;
+  }
+  res.send("You are not authenticated");
+};
 module.exports = {
   validateSignUpForm,
   addUserPost,
   validateGetMemberShipForm,
   changeMemberShipStatusToAdminPost,
+  authenticateUserToDeleteMessage,
 };

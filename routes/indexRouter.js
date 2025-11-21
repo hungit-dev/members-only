@@ -30,7 +30,11 @@ indexRouter.post(
   usersController.validateSignUpForm,
   usersController.addUserPost
 );
-indexRouter.get("/:id/delete", messagesController.deleteMessageGet);
+indexRouter.get(
+  "/:id/delete",
+  usersController.authenticateUserToDeleteMessage,
+  messagesController.deleteMessageGet
+);
 indexRouter.post(
   "/log-in",
   passport.authenticate("local", {
